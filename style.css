@@ -339,6 +339,67 @@ main {
   padding: 16px 20px;
 }
 
+/* News headline ticker */
+.ticker {
+  display: flex;
+  align-items: stretch;
+  background: #1f2937;
+  color: white;
+  font-size: 0.9rem;
+  overflow: hidden;
+}
+
+.ticker-label {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  padding: 10px 18px;
+  background: #dc2626;
+  font-weight: bold;
+  letter-spacing: 1px;
+  font-size: 0.8rem;
+  position: relative;
+  z-index: 1;
+}
+
+.ticker-track {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.ticker-move {
+  display: flex;
+  white-space: nowrap;
+  animation: tickerScroll 50s linear infinite;
+}
+
+.ticker-track:hover .ticker-move {
+  animation-play-state: paused;
+}
+
+.ticker-move span {
+  padding: 0 28px;
+}
+
+.ticker-move span::before {
+  content: "●";
+  color: #fb923c;
+  margin-right: 12px;
+  font-size: 0.6rem;
+  vertical-align: middle;
+}
+
+@keyframes tickerScroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 /* Smart clock */
 .smart-clock {
   display: flex;
