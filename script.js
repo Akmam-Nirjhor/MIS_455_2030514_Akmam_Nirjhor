@@ -167,6 +167,56 @@ chips.forEach(function (chip) {
   });
 });
 
+// Custom mouse cursor: a dot that follows instantly and a ring that trails behind
+var cursorDot = document.getElementById("cursorDot");
+var cursorRing = document.getElementById("cursorRing");
+var canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+if (canHover && !reduceMotion) {
+  document.body.classList.add("custom-cursor");
+
+  var mouseX = 0;
+  var mouseY = 0;
+  var ringX = 0;
+  var ringY = 0;
+
+  document.addEventListener("mousemove", function (event) {
+    mouseX = event.clientX;
+    mouseY = event.clientY;
+    cursorDot.style.transform = "translate(" + mouseX + "px, " + mouseY + "px)";
+    document.body.classList.add("cursor-active");
+  });
+
+  // Ring eases toward the mouse position every frame
+  function animateRing() {
+    ringX += (mouseX - ringX) * 0.15;
+    ringY += (mouseY - ringY) * 0.15;
+    cursorRing.style.transform = "translate(" + ringX + "px, " + ringY + "px)";
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
+
+  // Grow the ring over clickable things
+  document.addEventListener("mouseover", function (event) {
+    var clickable = event.target.closest("a, button, .card");
+    cursorRing.classList.toggle("hovering", clickable !== null);
+  });
+
+  document.addEventListener("mousedown", function () {
+    cursorRing.classList.add("clicking");
+  });
+
+  document.addEventListener("mouseup", function () {
+    cursorRing.classList.remove("clicking");
+  });
+
+  // Hide when the mouse leaves the window
+  document.addEventListener("mouseleave", function () {
+    document.body.classList.remove("cursor-active");
+  });
+}
+
 // Button click
 searchBtn.addEventListener("click", searchMeals);
 

@@ -339,6 +339,63 @@ main {
   padding: 16px 20px;
 }
 
+/* Custom mouse cursor */
+.cursor-dot,
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.cursor-dot::before,
+.cursor-ring::before {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.cursor-dot::before {
+  width: 8px;
+  height: 8px;
+  background: #ea580c;
+}
+
+.cursor-ring::before {
+  width: 36px;
+  height: 36px;
+  border: 2px solid #ea580c;
+  transition: width 0.25s, height 0.25s, background 0.25s, border-color 0.25s;
+}
+
+.cursor-ring.hovering::before {
+  width: 56px;
+  height: 56px;
+  background: rgba(234, 88, 12, 0.15);
+}
+
+.cursor-ring.clicking::before {
+  width: 24px;
+  height: 24px;
+  background: rgba(234, 88, 12, 0.35);
+}
+
+body.cursor-active .cursor-dot,
+body.cursor-active .cursor-ring {
+  opacity: 1;
+}
+
+body.custom-cursor,
+body.custom-cursor a,
+body.custom-cursor button,
+body.custom-cursor .card {
+  cursor: none;
+}
+
 /* Banner extras */
 .hero::before {
   content: "";
