@@ -156,6 +156,17 @@ if ("IntersectionObserver" in window) {
   });
 }
 
+// Popular search chips in the banner
+var chips = document.querySelectorAll(".chip");
+
+chips.forEach(function (chip) {
+  chip.addEventListener("click", function () {
+    searchInput.value = chip.getAttribute("data-query");
+    searchMeals();
+    document.getElementById("results-section").scrollIntoView({ behavior: "smooth" });
+  });
+});
+
 // Button click
 searchBtn.addEventListener("click", searchMeals);
 
