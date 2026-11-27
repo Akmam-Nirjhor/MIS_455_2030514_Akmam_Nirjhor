@@ -51,6 +51,7 @@ function showMeals(meals) {
 
     var card = document.createElement("div");
     card.className = "card";
+    card.style.animationDelay = i * 0.1 + "s";
 
     card.innerHTML =
       '<img src="' + meal.strMealThumb + '" alt="' + meal.strMeal + '">' +
@@ -78,6 +79,35 @@ navLinks.addEventListener("click", function () {
   navLinks.classList.remove("open");
   navToggle.setAttribute("aria-expanded", false);
 });
+
+// Navbar shadow/shrink when scrolling
+var navbar = document.querySelector(".navbar");
+
+window.addEventListener("scroll", function () {
+  navbar.classList.toggle("scrolled", window.scrollY > 20);
+});
+
+// Reveal sections as they scroll into view
+var revealItems = document.querySelectorAll(".reveal");
+
+if ("IntersectionObserver" in window) {
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  revealItems.forEach(function (item) {
+    observer.observe(item);
+  });
+} else {
+  revealItems.forEach(function (item) {
+    item.classList.add("visible");
+  });
+}
 
 // Button click
 searchBtn.addEventListener("click", searchMeals);
