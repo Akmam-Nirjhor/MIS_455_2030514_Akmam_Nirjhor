@@ -7,18 +7,48 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h1>🍽️ Meal Finder</h1>
-    <p>Search any meal or ingredient (e.g. chicken, pasta, beef)</p>
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="#home" class="brand">🍽️ Meal<span>Finder</span></a>
 
-    <div class="search-box">
-      <input type="text" id="searchInput" placeholder="Type a meal name...">
-      <button id="searchBtn">Search</button>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#search">Search</a></li>
+        <li><a href="#results-section">Results</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
     </div>
+  </nav>
+
+  <header class="hero" id="home">
+    <h1>Find your next favourite meal</h1>
+    <p>Search thousands of recipes by name or ingredient, like chicken, pasta or beef.</p>
   </header>
 
-  <p id="message"></p>
-  <div id="results" class="results"></div>
+  <main>
+    <section class="search-section" id="search">
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Type a meal name...">
+        <button id="searchBtn">Search</button>
+      </div>
+    </section>
+
+    <section class="results-section" id="results-section">
+      <p id="message"></p>
+      <div id="results" class="results"></div>
+    </section>
+
+    <section class="about" id="about">
+      <h2>About</h2>
+      <p>Meal Finder uses the free TheMealDB API to show recipe ideas, including category, cuisine and a link to the full recipe.</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2026 Meal Finder &middot; Data from TheMealDB</p>
+  </footer>
 
   <script src="script.js"></script>
 </body>

@@ -64,6 +64,21 @@ function showMeals(meals) {
   }
 }
 
+// Mobile navigation menu
+var navToggle = document.getElementById("navToggle");
+var navLinks = document.getElementById("navLinks");
+
+navToggle.addEventListener("click", function () {
+  var isOpen = navLinks.classList.toggle("open");
+  navToggle.setAttribute("aria-expanded", isOpen);
+});
+
+// Close the menu after choosing a link
+navLinks.addEventListener("click", function () {
+  navLinks.classList.remove("open");
+  navToggle.setAttribute("aria-expanded", false);
+});
+
 // Button click
 searchBtn.addEventListener("click", searchMeals);
 
