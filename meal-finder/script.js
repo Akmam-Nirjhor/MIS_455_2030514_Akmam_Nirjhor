@@ -80,6 +80,53 @@ navLinks.addEventListener("click", function () {
   navToggle.setAttribute("aria-expanded", false);
 });
 
+// Smart clock: shows the visitor's local time, date and timezone
+var clockTime = document.getElementById("clockTime");
+var clockDate = document.getElementById("clockDate");
+var clockIcon = document.getElementById("clockIcon");
+var greeting = document.getElementById("greeting");
+
+function updateClock() {
+  var now = new Date();
+
+  clockTime.textContent = now.toLocaleTimeString([], {
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit"
+  });
+
+  var dateText = now.toLocaleDateString([], {
+    weekday: "short",
+    month: "short",
+    day: "numeric"
+  });
+
+  var zone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  clockDate.textContent = dateText + " · " + zone.replace("_", " ");
+
+  // Greeting and icon change with the time of day
+  var hour = now.getHours();
+  var text = "Good evening";
+  var icon = "🌙";
+
+  if (hour >= 5 && hour < 12) {
+    text = "Good morning";
+    icon = "🌅";
+  } else if (hour >= 12 && hour < 17) {
+    text = "Good afternoon";
+    icon = "☀️";
+  } else if (hour >= 17 && hour < 21) {
+    text = "Good evening";
+    icon = "🌇";
+  }
+
+  clockIcon.textContent = icon;
+  greeting.textContent = text + "! What are you craving?";
+}
+
+updateClock();
+setInterval(updateClock, 1000);
+
 // Navbar shadow/shrink when scrolling
 var navbar = document.querySelector(".navbar");
 

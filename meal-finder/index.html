@@ -11,14 +11,22 @@
     <div class="nav-inner">
       <a href="#home" class="brand">🍽️ Meal<span>Finder</span></a>
 
-      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
-
       <ul class="nav-links" id="navLinks">
         <li><a href="#home">Home</a></li>
         <li><a href="#search">Search</a></li>
         <li><a href="#results-section">Results</a></li>
         <li><a href="#about">About</a></li>
       </ul>
+
+      <div class="smart-clock" id="smartClock" title="Your local time">
+        <span class="clock-icon" id="clockIcon">🕐</span>
+        <div class="clock-text">
+          <span class="clock-time" id="clockTime">--:--:--</span>
+          <span class="clock-date" id="clockDate"></span>
+        </div>
+      </div>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
     </div>
   </nav>
 
@@ -26,6 +34,7 @@
     <span class="shape shape-1"></span>
     <span class="shape shape-2"></span>
     <span class="shape shape-3"></span>
+    <span class="greeting" id="greeting"></span>
     <h1>Find your next favourite meal</h1>
     <p>Search thousands of recipes by name or ingredient, like chicken, pasta or beef.</p>
   </header>
